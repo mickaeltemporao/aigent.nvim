@@ -17,7 +17,6 @@ function M.toggle_provider()
   else
     config.options.provider = "agy"
   end
-  config.user_overrode_provider = true
   vim.notify("AIgent: Default provider switched to '" .. config.options.provider .. "'", vim.log.levels.INFO)
 end
 
@@ -33,7 +32,6 @@ function M.select_provider()
   local function apply_choice(choice)
     if choice then
       config.options.provider = choice
-      config.user_overrode_provider = true
       vim.notify("AIgent: Default provider set to '" .. choice .. "'", vim.log.levels.INFO)
     end
   end

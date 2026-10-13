@@ -42,7 +42,6 @@ M.defaults = {
 
 M.options = vim.deepcopy(M.defaults)
 M.last_prompt_path = nil
-M.user_overrode_provider = false
 
 --- Setup function to merge user configuration
 ---@param user_opts table|nil
