@@ -24,9 +24,9 @@ M.defaults = {
 
   -- Ollama / OpenAI-compatible endpoint settings
   ollama = {
-    endpoint = "https://engineers-has-rows-turned.trycloudflare.com/v1/chat/completions",
-    model = "muse-glimmer:30b-mlx",
-    api_key = os.getenv("OPENAI_API_KEY") or "ollama",
+    endpoint = "http://localhost:11434/v1/chat/completions",
+    model = "llama3.2",
+    api_key = os.getenv("OPENAI_API_KEY") or "",
   },
 
   -- Custom prompts directory (defaults to ~/.config/nvim/prompts)

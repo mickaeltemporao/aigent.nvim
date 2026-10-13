@@ -30,10 +30,10 @@ Call setup in your init.lua / lazy spec:
 ==============================================================================
 3. COMMANDS                                                 *aigent-commands*
 
-:Aigent [prompt]            Open picker or run with specific prompt
-:AigentPrompt               Open Telescope prompt picker with live preview
-:AigentProvider             Open Telescope provider dropdown picker
-:AigentToggleProvider       Toggle default provider (Ollama <-> AGY)
+:AIgent [prompt]            Open picker or run with specific prompt
+:AIgentPrompt               Open Telescope prompt picker with live preview
+:AIgentProvider             Open Telescope provider dropdown picker
+:AIgentToggleProvider       Toggle default provider (Ollama <-> AGY)
 
 ==============================================================================
 4. KEYMAPS                                                   *aigent-keymaps*

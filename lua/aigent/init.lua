@@ -18,7 +18,7 @@ function M.toggle_provider()
     config.options.provider = "agy"
   end
   config.user_overrode_provider = true
-  vim.notify("Aigent: Default provider switched to '" .. config.options.provider .. "'", vim.log.levels.INFO)
+  vim.notify("AIgent: Default provider switched to '" .. config.options.provider .. "'", vim.log.levels.INFO)
 end
 
 --- Open Telescope dropdown picker to select default provider
@@ -34,13 +34,13 @@ function M.select_provider()
     if choice then
       config.options.provider = choice
       config.user_overrode_provider = true
-      vim.notify("Aigent: Default provider set to '" .. choice .. "'", vim.log.levels.INFO)
+      vim.notify("AIgent: Default provider set to '" .. choice .. "'", vim.log.levels.INFO)
     end
   end
 
   if not has_telescope or not has_finders or not has_conf or not has_actions or not has_action_state or not has_themes then
     vim.ui.select({ "ollama", "agy" }, {
-      prompt = "Select Aigent Provider (Current: " .. config.options.provider .. "):",
+      prompt = "Select AIgent Provider (Current: " .. config.options.provider .. "):",
     }, apply_choice)
     return
   end
@@ -110,13 +110,13 @@ function M.pick_and_run(opts)
   local has_action_state, action_state = pcall(require, "telescope.actions.state")
 
   if not has_telescope or not has_finders or not has_conf or not has_actions or not has_action_state then
-    vim.notify("Aigent Error: Telescope is required to pick prompt files.", vim.log.levels.ERROR)
+    vim.notify("AIgent Error: Telescope is required to pick prompt files.", vim.log.levels.ERROR)
     return
   end
 
   local files = utils.get_prompt_files(target_buf)
   if #files == 0 then
-    vim.notify("Aigent: No prompt files found.", vim.log.levels.WARN)
+    vim.notify("AIgent: No prompt files found.", vim.log.levels.WARN)
     return
   end
 
@@ -179,7 +179,7 @@ function M.run(opts, custom_prompt_path, provider)
 
   local prompt_text, prompt_file = utils.load_prompt_content(target_prompt_path)
   if not prompt_text then
-    vim.notify("Aigent Error: Could not read prompt at '" .. tostring(target_prompt_path) .. "'", vim.log.levels.ERROR)
+    vim.notify("AIgent Error: Could not read prompt at '" .. tostring(target_prompt_path) .. "'", vim.log.levels.ERROR)
     return
   end
 
@@ -204,7 +204,7 @@ function M.run(opts, custom_prompt_path, provider)
   local user_content = table.concat(lines, "\n")
 
   if #user_content == 0 then
-    vim.notify("Aigent: Buffer/selection is empty.", vim.log.levels.WARN)
+    vim.notify("AIgent: Buffer/selection is empty.", vim.log.levels.WARN)
     return
   end
 
@@ -213,7 +213,7 @@ function M.run(opts, custom_prompt_path, provider)
 
   -- Notification
   local prompt_name = vim.fn.fnamemodify(prompt_file, ":t")
-  vim.notify("Aigent [" .. prompt_name .. " via " .. active_provider .. "]: Sending request...", vim.log.levels.INFO)
+  vim.notify("AIgent [" .. prompt_name .. " via " .. active_provider .. "]: Sending request...", vim.log.levels.INFO)
 
   local function on_success(result_text, provider_label)
     vim.schedule(function()
@@ -230,13 +230,13 @@ function M.run(opts, custom_prompt_path, provider)
         vim.api.nvim_buf_set_lines(target_buf, target_insertion_line, target_insertion_line, false, result_lines)
       end
 
-      vim.notify("Aigent [" .. prompt_name .. " via " .. provider_label .. "]: Response inserted!", vim.log.levels.INFO)
+      vim.notify("AIgent [" .. prompt_name .. " via " .. provider_label .. "]: Response inserted!", vim.log.levels.INFO)
     end)
   end
 
   local function on_error(err_msg)
     vim.schedule(function()
-      vim.notify("Aigent Error: " .. err_msg, vim.log.levels.ERROR)
+      vim.notify("AIgent Error: " .. err_msg, vim.log.levels.ERROR)
     end)
   end
 

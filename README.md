@@ -25,11 +25,8 @@ A fast, intent-driven LLM assistant for Neovim with built-in email reply workflo
 ### [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
-local local_path = vim.fn.expand("~/Documents/code/aigent")
-
 return {
   "mickaeltemporao/aigent.nvim",
-  dir = vim.fn.isdirectory(local_path) == 1 and local_path or nil,
   dependencies = {
     "nvim-telescope/telescope.nvim",
   },
@@ -59,20 +56,36 @@ return {
 }
 ```
 
+> **Tip for local development**: Use `dir = "~/Documents/code/to_merge/aigent"` (or your local clone path) inside the lazy spec.
+
+### [packer.nvim](https://github.com/wbthomason/packer.nvim)
+
+```lua
+use({
+  "mickaeltemporao/aigent.nvim",
+  requires = { "nvim-telescope/telescope.nvim" },
+  config = function()
+    require("aigent").setup({
+      provider = "ollama",
+    })
+  end,
+})
+```
+
 ---
 
 ## ⌨️ Keymaps & Commands
 
 | Keymap | Mode | Command | Action |
 | :--- | :--- | :--- | :--- |
-| **`<leader>ag`** | Normal / Visual | `:Aigent` | Open prompt picker (pre-selected to last/default prompt, live preview) and execute on `<CR>` |
-| **`<leader>ap`** | Normal | `:AigentProvider` | Open Telescope dropdown to switch provider (`ollama` vs `agy`) |
+| **`<leader>ag`** | Normal / Visual | `:AIgent` | Open prompt picker (pre-selected to last/default prompt, live preview) and execute on `<CR>` |
+| **`<leader>ap`** | Normal | `:AIgentProvider` | Open Telescope dropdown to switch provider (`ollama` vs `agy`) |
 
 ### Additional Commands
 
-- `:Aigent [prompt_file]` – Run aigent directly with a specific prompt file.
-- `:AigentPrompt` – Open prompt picker with live preview.
-- `:AigentToggleProvider` – Fast command to toggle default provider between Ollama and AGY.
+- `:AIgent [prompt_file]` – Run AIgent directly with a specific prompt file.
+- `:AIgentPrompt` – Open prompt picker with live preview.
+- `:AIgentToggleProvider` – Fast command to toggle default provider between Ollama and AGY.
 
 ---
 
