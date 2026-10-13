@@ -1,22 +1,52 @@
 # aigent.nvim
 
-A fast, intent-driven LLM assistant for Neovim with built-in email reply workflows and multi-provider backends (defaults to local/remote Ollama).
+Zero-friction, muscle-memory LLM actions for Neovim. Run tailored prompts on any buffer or visual selection in two keystrokes.
+
+---
+
+## Why aigent.nvim?
+
+Most Neovim AI plugins fall into two extremes: either heavy, conversational sidebars that pull you out of your editing flow, or rigid tools with hardcoded prompts. `aigent.nvim` focuses on speed and unobtrusive intent:
+
+- **No Chat Panel Clutter**: Actions execute directly in place on your active buffer or visual selection.
+- **0.1s Muscle Memory**: The last-used (or context-default) prompt is pinned to the top. Press `<leader>ag` followed immediately by `<CR>` to execute without typing.
+- **Telescope Live Preview**: Browse prompts with a live preview showing the exact instructions, tone, and constraints before firing the request.
+- **Context-Aware Intelligence**: Automatically re-ranks prompts and protects buffer structures based on `filetype` (e.g., auto-promoting reply actions and protecting RFC headers when editing mail).
+- **Plain Markdown Templates**: Prompts are just `.md` files in `~/.config/nvim/prompts/`—no complex Lua configuration needed.
+- **Hybrid Local and Cloud**: Seamlessly toggle between private local models ([Ollama](https://ollama.com/)) and fast cloud models via `agy`.
+
+---
+
+## Workflow
+
+```text
+[ Active Buffer or Visual Selection ]
+                  │
+                  │  Press <leader>ag
+                  ▼
+┌────────────────────────────────────────────────────────┐
+│ Telescope Prompt Picker (Live Markdown Preview)        │
+│  * default.md (current)                                │
+│    explain.md                                          │
+│    refactor.md                                         │
+│    reply.md                                            │
+└────────────────────────────────────────────────────────┘
+                  │
+                  │  Press <CR> (or pick & <CR>)
+                  ▼
+[ Instant Inline Response Insertion / Replacement ]
+```
 
 ---
 
 ## Features
 
-- **Picker-First with Live Markdown Preview**: Press `<leader>ag` to open a Telescope prompt picker showing your prompt rules, tone, and signature in real-time.
-- **0.1s Muscle Memory**: The last-used (or context-default) prompt is **pre-selected at the top**. To run the default, just press `<leader>ag` followed immediately by `<CR>`.
-- **Smart NeoMutt & Email Safety**:
-  - Automatically routes `filetype == "mail"` to fast cloud models (`gemini-3.8-flash-low` via `agy`, ~1.5s latency).
-  - **Mail Header Protection**: If your cursor is resting inside email headers (`From:`, `Subject:`, etc.), the reply is automatically placed below the header separator into the message body—never corrupting email metadata.
-  - Groups email action prompts (`reply`, `decline`, `reschedule`, `ack`) at the top of the picker when editing mail.
-- **Visual Selection & Inline Replies**: Highlight a specific paragraph or quoted question in visual mode, press `<leader>ag`, and only that selection is sent to the LLM and answered inline.
-- **Multi-Provider Support**:
-  - **AGY CLI**: Fast cloud models (`gemini-3.8-flash-low`, `gemini-3.8-flash-medium`, etc.).
-  - **Ollama / OpenAI-compatible**: Connects to local Ollama (`llama3.2`) or any remote endpoint.
-- **Zero-Config Bundled Prompts**: Works immediately out of the box with bundled templates, while supporting user overrides in `~/.config/nvim/prompts/`.
+- **Picker-First with Live Preview**: Open a Telescope picker with `<leader>ag` showing your prompt rules and constraints in real-time.
+- **Zero-Keystroke Repetition**: The last-used prompt is always top-ranked. To re-run or run the default, simply press `<leader>ag<CR>`.
+- **Visual Selection & Inline Operations**: Highlight a code block, paragraph, or question in visual mode, press `<leader>ag`, and only that selection is transformed.
+- **Smart Mail & Header Protection**: When `filetype == "mail"`, prompts are automatically reordered for communication (`reply`, `decline`, `reschedule`, `ack`), and insertions avoid email headers (`From:`, `Subject:`) to prevent metadata corruption.
+- **Multi-Provider Switching**: Quick toggle (`<leader>ap` or `:AIgentToggleProvider`) between local Ollama and cloud CLI (`agy`).
+- **Zero-Config Bundled Templates**: Works immediately out of the box while allowing user overrides in `~/.config/nvim/prompts/`.
 
 ---
 
@@ -34,13 +64,13 @@ return {
     -- Default provider: "ollama" or "agy"
     provider = "ollama",
 
-    -- AGY configuration (fast cloud models)
+    -- agy CLI configuration (fast cloud models)
     agy = {
       cmd = "agy",
       model = "gemini-3.8-flash-low",
     },
 
-    -- Ollama / OpenAI compatible endpoint
+    -- Ollama / OpenAI-compatible endpoint
     ollama = {
       endpoint = "http://localhost:11434/v1/chat/completions",
       model = "llama3.2",
@@ -50,7 +80,7 @@ return {
     -- Prompts directory (defaults to ~/.config/nvim/prompts)
     prompts_dir = vim.fn.stdpath("config") .. "/prompts",
 
-    -- Automatically use AGY when editing emails (filetype == "mail")
+    -- Automatically route mail buffers (filetype == "mail") to agy
     auto_mail_agy = true,
   },
 }
@@ -85,22 +115,7 @@ use({
 
 - `:AIgent [prompt_file]` – Run AIgent directly with a specific prompt file.
 - `:AIgentPrompt` – Open prompt picker with live preview.
-- `:AIgentToggleProvider` – Fast command to toggle default provider between Ollama and AGY.
-
----
-
-## NeoMutt Email Workflow
-
-When opening an email in Neovim from NeoMutt:
-
-1. Press **`<leader>ag`**.
-2. Telescope pops up showing your email actions:
-   - `reply.md (current)` – Friendly, concise 3–5 sentence reply.
-   - `ack.md` – 1–2 sentence confirmation of receipt.
-   - `decline.md` – Warm, polite decline of an invitation/request.
-   - `reschedule.md` – Apologetic request to reschedule with alternative times.
-3. Hit **`<CR>`** immediately to send the standard reply, or type `dec` / `res` and hit **`<CR>`**.
-4. The response is inserted directly below the email headers into the message body.
+- `:AIgentToggleProvider` – Fast command to toggle default provider between Ollama and agy.
 
 ---
 
@@ -122,7 +137,7 @@ Summarize the input text into 3 bullet points.
 - Formatting: Return raw plain text only. Do NOT wrap in markdown code blocks.
 ```
 
-Any `.md` file added to your prompts directory will automatically appear in the Telescope picker on your next `<leader>ag` press!
+Any `.md` file added to your prompts directory will automatically appear in the Telescope picker on your next `<leader>ag` press.
 
 ---
 
