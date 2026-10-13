@@ -1,10 +1,10 @@
-# aigent.nvim 🤖
+# aigent.nvim
 
-A fast, intent-driven LLM assistant for Neovim with built-in email reply workflows (NeoMutt-safe) and multi-provider backends (Google Antigravity / `agy` and local/remote Ollama).
+A fast, intent-driven LLM assistant for Neovim with built-in email reply workflows and multi-provider backends (defaults to local/remote Ollama).
 
 ---
 
-## ✨ Features
+## Features
 
 - **Picker-First with Live Markdown Preview**: Press `<leader>ag` to open a Telescope prompt picker showing your prompt rules, tone, and signature in real-time.
 - **0.1s Muscle Memory**: The last-used (or context-default) prompt is **pre-selected at the top**. To run the default, just press `<leader>ag` followed immediately by `<CR>`.
@@ -20,7 +20,7 @@ A fast, intent-driven LLM assistant for Neovim with built-in email reply workflo
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### [lazy.nvim](https://github.com/folke/lazy.nvim)
 
@@ -56,7 +56,7 @@ return {
 }
 ```
 
-> **Tip for local development**: Use `dir = "~/Documents/code/to_merge/aigent"` (or your local clone path) inside the lazy spec.
+> **Tip for local development**: Use `dir = "~/Documents/code/aigent"` (or your local clone path) inside the lazy spec.
 
 ### [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
@@ -74,7 +74,7 @@ use({
 
 ---
 
-## ⌨️ Keymaps & Commands
+## Keymaps & Commands
 
 | Keymap | Mode | Command | Action |
 | :--- | :--- | :--- | :--- |
@@ -89,7 +89,7 @@ use({
 
 ---
 
-## 📬 NeoMutt Email Workflow
+## NeoMutt Email Workflow
 
 When opening an email in Neovim from NeoMutt:
 
@@ -104,7 +104,7 @@ When opening an email in Neovim from NeoMutt:
 
 ---
 
-## 📝 Custom Prompts
+## Custom Prompts
 
 Prompts are standard Markdown files located in `~/.config/nvim/prompts/` (or the directory specified in `prompts_dir`).
 
@@ -126,6 +126,10 @@ Any `.md` file added to your prompts directory will automatically appear in the 
 
 ---
 
-## 📄 License
+## License
 
 MIT © [Mickael Temporao](LICENSE)
+
+---
+
+*Designed and developed with AI pair programming assistance.*
