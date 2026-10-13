@@ -143,7 +143,7 @@ Any `.md` file added to your prompts directory will automatically appear in the 
 
 ## License
 
-MIT © [Mickael Temporao](LICENSE)
+GPL-3.0 © [Mickael Temporao](LICENSE)
 
 ---
 
