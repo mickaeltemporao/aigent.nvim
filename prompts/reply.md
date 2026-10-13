@@ -15,7 +15,6 @@ Draft a **concise, friendly, and professional** reply to an email in the **origi
 - **Tone**: Warm but professional. Avoid jargon.
 - **Brevity**: Keep the email brief and to the point.
 - **Concise Sentences**: Keep sentences short, clear, and easy to grasp. Avoid long, convoluted, or compound run-on sentences. Never write long sentences just to satisfy a sentence count—if 1 to 3 short sentences answer the email, stop there.
-- **No Signature**: Do NOT include a sign-off or signature (e.g., do not add `-- \n Mickael` or closing names). Neomutt handles the signature automatically.
 - **Language**: Match the original email (e.g., if French, reply in French).
 - **Inclusive Writing**: Use inclusive writing. Avoid gendered wording when possible (prefer neutral or epicene phrasing). When gendered inflections are needed (e.g., in French), use a period `.` instead of the middle dot `·` (e.g., `prêt.e`, not `prêt·e`).
 - **Formatting**: Return plain text only. Do NOT wrap in markdown code blocks or backticks. Avoid large, dense chunks of text.
@@ -33,6 +32,6 @@ Draft a **concise, friendly, and professional** reply to an email in the **origi
 
 ## Output Format
 
-Hi [Sender],
+Dear [Sender],
 
 [Reply body]
