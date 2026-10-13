@@ -3,15 +3,9 @@ local config = require("aigent.config")
 local M = {}
 
 --- Determine active provider for given buffer
----@param bufnr integer
+---@param bufnr integer|nil
 ---@return string provider_name
 function M.get_active_provider(bufnr)
-  if config.user_overrode_provider then
-    return config.options.provider or "ollama"
-  end
-  if config.options.auto_mail_agy and vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].filetype == "mail" then
-    return "agy"
-  end
   return config.options.provider or "ollama"
 end
 

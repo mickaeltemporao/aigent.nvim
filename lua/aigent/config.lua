@@ -36,9 +36,6 @@ M.defaults = {
   insert_mode = "append",
   temperature = 0.7,
 
-  -- Automatically use AGY when filetype is 'mail' (e.g., NeoMutt)
-  auto_mail_agy = true,
-
   -- Automatically set up default keymaps (<leader>ag and <leader>ap)
   keymaps = true,
 }

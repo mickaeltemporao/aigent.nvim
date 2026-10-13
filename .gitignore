@@ -8,5 +8,6 @@ Thumbs.db
 *~
 .netrwhist
 
-# Neovim test logs / session files
+# Neovim test logs / session files / help tags
 .session.vim
+doc/tags

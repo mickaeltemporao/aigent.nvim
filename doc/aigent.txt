@@ -23,7 +23,6 @@ Call setup in your init.lua / lazy spec:
 >lua
     require("aigent").setup({
         provider = "ollama",
-        auto_mail_agy = true,
     })
 <
 

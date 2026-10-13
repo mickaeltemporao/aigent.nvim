@@ -79,9 +79,6 @@ return {
 
     -- Prompts directory (defaults to ~/.config/nvim/prompts)
     prompts_dir = vim.fn.stdpath("config") .. "/prompts",
-
-    -- Automatically route mail buffers (filetype == "mail") to agy
-    auto_mail_agy = true,
   },
 }
 ```
