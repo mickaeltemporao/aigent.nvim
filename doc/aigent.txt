@@ -1,0 +1,44 @@
+*aigent.txt*  Intent-driven LLM assistant for Neovim with email workflow support
+
+==============================================================================
+CONTENTS                                                    *aigent-contents*
+
+    1. Introduction ................................ |aigent-intro|
+    2. Configuration ............................... |aigent-config|
+    3. Commands .................................... |aigent-commands|
+    4. Keymaps ..................................... |aigent-keymaps|
+
+==============================================================================
+1. INTRODUCTION                                               *aigent-intro*
+
+aigent.nvim is a fast, intent-driven LLM assistant for Neovim supporting
+both cloud (AGY CLI) and local (Ollama / OpenAI-compatible) backends.
+It features built-in NeoMutt email safety, header detection, and a
+Telescope picker with live preview.
+
+==============================================================================
+2. CONFIGURATION                                             *aigent-config*
+
+Call setup in your init.lua / lazy spec:
+>lua
+    require("aigent").setup({
+        provider = "ollama",
+        auto_mail_agy = true,
+    })
+<
+
+==============================================================================
+3. COMMANDS                                                 *aigent-commands*
+
+:Aigent [prompt]            Open picker or run with specific prompt
+:AigentPrompt               Open Telescope prompt picker with live preview
+:AigentProvider             Open Telescope provider dropdown picker
+:AigentToggleProvider       Toggle default provider (Ollama <-> AGY)
+
+==============================================================================
+4. KEYMAPS                                                   *aigent-keymaps*
+
+<leader>ag                  Open prompt picker and execute on <CR>
+<leader>ap                  Select provider via Telescope dropdown
+
+vim:tw=78:ts=8:ft=help:norl:
